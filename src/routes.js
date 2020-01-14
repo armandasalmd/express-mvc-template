@@ -5,7 +5,7 @@ import authRouter from './routers/auth'
 
 const applyRoutes = (app) => {
 	app.use(mainRouter)
-	app.use('/users', userRouter)
+	app.use(userRouter)
 	app.use('/orders', orderRouter)
 	app.use('/auth', authRouter)
 }

@@ -4,7 +4,11 @@ import { UserModel } from '../models'
 const router = express.Router()
 
 router.get('/login', (req, res) => {
-	res.render('auth/login', { msg: req.query.msg })
+	if (req.session.authorized) {
+		req.session.authorized = false
+		req.session.user = undefined
+	}
+	res.render('auth/login', { msg: req.query.msg, username: req.query.login })
 })
 
 router.post('/login', async (req, res) => {
@@ -15,10 +19,10 @@ router.post('/login', async (req, res) => {
 				if (user) {
 					req.session.authorized = true
 					req.session.user = user
-					res.redirect('/users')
+					res.redirect('/')
 					return true
 				} else {
-					res.redirect('/auth/login?msg=login%20failed')
+					res.redirect(`/auth/login?msg=login%20failed&login=${req.body.username}`)
 				}
 			})
 			.catch((err) => {
@@ -28,6 +32,10 @@ router.post('/login', async (req, res) => {
 })
 
 router.get('/register', (req, res) => {
+	if (req.session.authorized) {
+		req.session.authorized = false
+		req.session.user = undefined
+	}
 	res.render('auth/register')
 })
 
@@ -41,6 +49,10 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/reset', (req, res) => {
+	if (req.session.authorized) {
+		req.session.authorized = false
+		req.session.user = undefined
+	}
 	res.render('auth/reset', { msg: req.query.msg })
 })
 

@@ -14,7 +14,6 @@ export default class OrderModel {
 
 	// hello world method
 	hello() {
-		console.log('Hello world!')
 		return 'Hello world!'
 	}
 }

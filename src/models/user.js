@@ -40,8 +40,6 @@ export default class UserModel {
 			user.save((err, doc) => {
 				if (err)
 					console.log(err.message)
-				else
-					console.log('Saved success')
 			})
 		} else
 			throw new Error('Empty userObject provided! Register failed')
@@ -57,6 +55,7 @@ export default class UserModel {
 						console.log(err.message)
 				}
 			)
+			if (!user) return false // user was not found in database
 			const isPassCorrect = await bcrypt.compare(password, user.password)
 			if (isPassCorrect) {
 				const docJSON = JSON.parse(JSON.stringify(user))

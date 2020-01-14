@@ -13,7 +13,8 @@
 
 	<form method="POST" action="/auth/login">
 		<label for="username">Username:</label>
-		<input type="text" id="username" name="username">
+		<input type="text" id="username" name="username"
+			value="<% if (typeof username !== 'undefined' && username) { %><%= username %><% } %>">
 		<label for="password">Password:</label>
 		<input type="password" id="password" name="password">
 		<input type="Submit" value="Login!">
@@ -21,6 +22,7 @@
 	<% if (typeof msg !== 'undefined' && msg) { %>
 	<h3><%= msg %></h3>
 	<% } %>
+
 </body>
 
 </html>
