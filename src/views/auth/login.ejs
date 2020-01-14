@@ -1,0 +1,26 @@
+<html>
+
+<head>
+	<title>Login page</title>
+</head>
+
+<body>
+	<h1>This is login page</h1>
+	<p>Hello everyone</p>
+	<a href="/">Home</a>
+	<a href="/auth/reset">Forgot password?</a>
+	<a href="/auth/register">Register</a>
+
+	<form method="POST" action="/auth/login">
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username">
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password">
+		<input type="Submit" value="Login!">
+	</form>
+	<% if (typeof msg !== 'undefined' && msg) { %>
+	<h3><%= msg %></h3>
+	<% } %>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<html>
+
+<head>
+	<title>You are logged in</title>
+</head>
+
+<body>
+	<h1>Welcome</h1>
+	<p><% if (typeof user.firstname !== 'undefined' && user.firstname) { %>
+		<h3><%= user.firstname %></h3>
+		<% } %></p>
+	<a href="/auth/logout">Logout</a>
+</body>
+
+</html>
